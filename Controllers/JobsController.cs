@@ -1,8 +1,7 @@
+using aspnetjobs.Services;
 using Hangfire;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
 
 namespace aspnetjobs.Controllers
 {
@@ -13,16 +12,10 @@ namespace aspnetjobs.Controllers
       var numbers = Enumerable.Range(1, 100000).Select(x => x);
       foreach (var num in numbers)
       {
-        BackgroundJob.Enqueue(() => WriteAsync(num));
+        BackgroundJob.Enqueue(() => WriterAsync.WriteAsync(num));
       }
 
       return "This is my default action...";
-    }
-
-    public async Task WriteAsync(int num)
-    {
-      System.Console.WriteLine("Number is " + num);
-      await Task.Delay(1);
     }
   }
 }
