@@ -9,7 +9,7 @@ namespace aspnetjobs.Controllers
   {
     public string Index()
     {
-      var numbers = Enumerable.Range(1, 10_000).Select(x => x);
+      var numbers = Enumerable.Range(1, 10_000);
       foreach (var num in numbers)
       {
         BackgroundJob.Enqueue(() => new WriterAsync().WriteAsync(num));
