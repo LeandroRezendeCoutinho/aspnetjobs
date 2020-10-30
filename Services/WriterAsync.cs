@@ -8,7 +8,14 @@ namespace aspnetjobs.Services
     public async Task WriteAsync(int num)
     {
       System.Console.WriteLine("Number is " + num);
-      await Task.Delay(1);
+
+      await Task.Delay(delay());
+    }
+
+    private int delay()
+    {
+      System.Random random = new System.Random();
+      return random.Next(1, 10);
     }
   }
 }
